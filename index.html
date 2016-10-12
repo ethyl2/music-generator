@@ -180,8 +180,41 @@
     }
     var newSong = noteArray.join(" ");
     var songNode = document.createElement('h3');
+    songNode.classList.add('stretch');
     songNode.innerHTML = newSong;
     songGenerator.appendChild(songNode);
+
+    var newLyrics = generateLyrics();
+    var lyricsNode = document.createElement('p');
+    lyricsNode.innerHTML = newLyrics;
+    songGenerator.appendChild(lyricsNode);
+  }
+
+  function generateLyrics() {
+    var lyricsArray = ["My"];
+
+    var nounChoices = ["love", "heart", "light", "cat", "dog", "thumb", "home",
+                          "soup", "pen", "hat", "sign", "face", "dream", "soul",
+                          "tree", "fish", "song", "mind", "strength", "smile"];
+    lyricsArray.push(nounChoices[Math.floor(Math.random() * nounChoices.length)]);
+    lyricsArray.push("is like a");
+
+    var adjChoices = ["strong", "pale", "red", "black", "gray", "blue", "rich",
+                        "cool", "still", "wise", "calm", "wild", "deep", "soft",
+                        "glad", "sad", "mad"];
+    lyricsArray.push(adjChoices[Math.floor(Math.random() * adjChoices.length)]);
+
+    var itemChoices = ["oak tree", "treehouse", "mirror", "pickle", "lighthouse",
+                        "turtle", "cheesecake", "cupcake", "ocean", "river", "heartbeat",
+                      "smart phone", "flower", "mountain", "bus stop", "journey",
+                      "pathway", "panther", "tuba"];
+    lyricsArray.push(itemChoices[Math.floor(Math.random() * itemChoices.length)]);
+    lyricsArray.push(".");
+
+    var newLyrics = lyricsArray.join(" ");
+    return newLyrics;
+    console.log(newLyrics);
+
   }
 
 
