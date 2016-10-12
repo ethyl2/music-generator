@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<!-- Sound files are from https://www.freesound.org/people/pinkyfinger/packs/4409/ -->
+
+<html>
+
+<head>
+  <title>Making Music</title>
+  <meta name=viewport content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:500" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <h1>Making Music with a Pentatonic Scale</h1>
+
+  <div id="explanation">
+    <p>A Pentatonic scale is a really neat way to create impromptu songs.
+      It is a series of 5 notes. Here is one way they are chosen:</p>
+    <ul>
+      <li>The first note is called the tonic.</li>
+      <li>Next is a <a href="#steps-explanation">whole step*</a>
+          up from the tonic, called the 2nd.</li>
+      <li>Go up one more whole step up to get the 3rd.</li>
+      <li>Go 1 1/2 steps to skip to the 5th.</li>
+      <li>And one more whole step to the 6th.</li>
+      <li>Finally, you can complete the scale with the tonic
+         -- this time, it's the higher one.</li>
+    </ul>
+
+    <p> If you start with the note C, the scale is C, D, E, G, A, C.</p>
+
+  </div>
+  <hr>
+
+  <div id="a-scale">
+    <h2>A Pentatonic Scale:</h2>
+    <button id="piano-a-ascale">Play A</button>
+    <button id="piano-b">Play B</button>
+    <button id="piano-c-sharp">Play C#</button>
+    <button id="piano-e-ascale">Play E</button>
+    <button id="piano-f-sharp">Play F#</button>
+    <button id="piano-a-ascale-again">Play A</button>
+  </div>
+  <hr>
+
+  <div id="c-scale">
+    <h2>C Pentatonic Scale:</h2>
+    <button id="piano-c">Play C</button>
+    <button id="piano-d">Play D</button>
+    <button id="piano-e">Play E</button>
+    <button id="piano-g">Play G</button>
+    <button id="piano-a">Play A</button>
+    <button id="piano-c-again">Play C</button>
+  </div>
+  <hr>
+
+  <div id="song-generator">
+    <p>Go ahead and play the notes of a pentatonic scale in any
+      order or pattern you choose! <br>Click on the song generator button
+      for a new random song you can play in the key of C.
+      <br>Just click on the buttons for the notes in the order they are given.
+    </p>
+    <button id="random-song">Pentatonic Song Generator</button>
+  </div>
+
+  <hr>
+  <p id="steps-explanation"> *A half step is probably best seen on a piano keyboard.
+    Start on a key and then go to the key that it bumps up against.
+    For example, you could start on C and go to the black key above it, which is called C sharp.
+    A whole step is 2 half notes. For example, you could start on C and go to D.</p>
+
+<script>
+
+  //Music note variables:
+
+  var noteC = new Audio("sounds/piano-c.wav");
+  var noteCSharp = new Audio("sounds/piano-c-sharp.wav");
+  var noteD = new Audio("sounds/piano-d.wav");
+  var noteE = new Audio("sounds/piano-e.wav");
+  var noteFSharp = new Audio("sounds/piano-f-sharp.wav");
+  var noteG = new Audio("sounds/piano-g.wav");
+  var noteA = new Audio("sounds/piano-a.wav");
+  var noteB = new Audio("sounds/piano-b.wav");
+
+  //Button Variables:
+
+  //For C Scale:
+  var buttonC = document.getElementById("piano-c");
+  var buttonD = document.getElementById("piano-d");
+  var buttonE = document.getElementById("piano-e");
+  var buttonG = document.getElementById("piano-g");
+  var buttonA = document.getElementById("piano-a");
+  var buttonCAgain = document.getElementById("piano-c-again");
+
+  //For A Scale:
+  var buttonAAScale = document.getElementById("piano-a-ascale");
+  var buttonB = document.getElementById("piano-b");
+  var buttonCSharp = document.getElementById("piano-c-sharp");
+  var buttonEAScale = document.getElementById("piano-e-ascale");
+  var buttonFSharp = document.getElementById("piano-f-sharp");
+  var buttonAAgain = document.getElementById("piano-a-ascale-again");
+
+  // Button Handlers:
+
+  buttonC.onclick = function() {
+    noteC.play();
+    noteC.currentTime=0;
+  }
+
+  buttonD.onclick = function() {
+    noteD.play();
+    noteD.currentTime=0;
+  }
+
+  buttonE.onclick = function() {
+    noteE.play();
+    noteE.currentTime=0;
+  }
+
+  buttonG.onclick = function() {
+    noteG.play();
+    noteG.currentTime=0;
+  }
+
+  buttonA.onclick = function() {
+    noteA.play();
+    noteA.currentTime=0;
+  }
+
+  buttonCAgain.onclick = function() {
+    noteC.play();
+    noteC.currentTime=0;
+  }
+
+  buttonAAScale.onclick = function() {
+    noteA.play();
+    noteA.currentTime=0;
+  }
+
+  buttonB.onclick = function() {
+    noteB.play();
+    noteB.currentTime=0;
+  }
+
+  buttonAAScale.onclick = function() {
+    noteA.play();
+    noteA.currentTime=0;
+  }
+
+  buttonCSharp.onclick = function() {
+    noteCSharp.play();
+    noteCSharp.currentTime=0;
+  }
+
+  buttonEAScale.onclick = function() {
+    noteE.play();
+    noteE.currentTime=0;
+  }
+
+  buttonFSharp.onclick = function() {
+    noteFSharp.play();
+    noteFSharp.currentTime=0;
+  }
+
+  buttonAAgain.onclick = function() {
+    noteA.play();
+    noteA.currentTime=0;
+  }
+
+  // Random notes/song generator
+  var songGenerator = document.getElementById("song-generator");
+  var buttonSong = document.getElementById("random-song");
+  buttonSong.onclick = function() {
+
+    var cScaleArray = ["C", "D", "E", "G", "A"];
+    var noteArray = [];
+    for (var i=0; i<8; i++) {
+      var note = cScaleArray[Math.floor(Math.random() * 5)];
+      noteArray.push(note);
+    }
+    var newSong = noteArray.join(" ");
+    var songNode = document.createElement('h3');
+    songNode.innerHTML = newSong;
+    songGenerator.appendChild(songNode);
+  }
+
+
+</script>
+</body>
+
+</html>
